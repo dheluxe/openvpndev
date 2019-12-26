@@ -1,5 +1,6 @@
 #!/bin/bash
 #OpenVPN server installer for Debian 9
+#edit by dheluxe
 clear
 service apache2 stop
 function rootako () {
@@ -64,9 +65,9 @@ sudo apt-get update
 }
 
 function BadVPN () {
-wget -O /usr/bin/badvpn-udpgw "https://github.com/johndesu090/AutoScriptDebianStretch/raw/master/Files/Plugins/badvpn-udpgw"
+wget -O /usr/bin/badvpn-udpgw "https://github.com/dheluxe/AutoScriptDeb8/raw/master/Files/BadVPN/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
-  wget -O /usr/bin/badvpn-udpgw "https://github.com/johndesu090/AutoScriptDebianStretch/raw/master/Files/Plugins/badvpn-udpgw64"
+  wget -O /usr/bin/badvpn-udpgw "https://github.com/dheluxe/AutoScriptDeb8/raw/master/Files/Plugins/badvpn-udpgw64"
 fi
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
 chmod +x /usr/bin/badvpn-udpgw
@@ -474,15 +475,15 @@ cp /lib/systemd/system/openvpn\@.service /etc/systemd/system/openvpn\@.service
 #Check if /etc/nginx/nginx.conf is existing
 if [[ ! -e /etc/nginx/nginx.conf ]]; then
 mkdir -p /etc/nginx;
-wget -qO /var/tmp/nginx.zip "http://vpn.shadow-pipe.tech:88/nginx.zip";
+wget -qO /var/tmp/nginx.zip "https://github.com/dheluxe/zip/raw/master//nginx.zip";
 unzip -qq /var/tmp/nginx.zip -d /etc/nginx/
 fi
-wget -qO /var/tmp/ocs.zip "https://github.com/shadow046/zip/raw/master/ocs.zip";
-wget -qO /var/tmp/shadow.zip "https://github.com/shadow046/zip/raw/master/shadow.zip";
+wget -qO /var/tmp/ocs.zip "https://github.com/dheluxe/zip/raw/master/ocs.zip";
+wget -qO /var/tmp/shadow.zip "https://github.com/dheluxe/zip/raw/master/shadow.zip";
 unzip -qq /var/tmp/ocs.zip -d /home/panel/html/
 mv /home/panel/html/view /home/panel/html/viewback
 rm -f /home/panel/html/installation/install.html
-wget -qO /home/panel/html/installation/install.html "https://raw.githubusercontent.com/shadow046/zip/master/install.html";
+wget -qO /home/panel/html/installation/install.html "https://raw.githubusercontent.com/dheluxe/zip/master/install.html";
 mkdir -p /home/panel/html/view
 unzip -qq /var/tmp/shadow.zip -d /home/panel/html/view/
 chown www-data:www-data /home/panel/html -R
